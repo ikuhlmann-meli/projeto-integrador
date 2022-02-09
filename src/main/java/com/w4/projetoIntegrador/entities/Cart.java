@@ -9,6 +9,7 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Data
@@ -25,16 +26,19 @@ public class Cart {
 
     private LocalDate date;
 
-    @Transient
-    private Long buyerId;
+//    @Transient
+//    private Long buyerId;
 
     private String statusCode;
+
+    private LocalDateTime scheduledDateTimeFrom;
+
+    private LocalDateTime scheduledDateTimeTo;
 
     @OneToMany(mappedBy = "cart", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private List<ItemCart> itemCarts;
 
     @ManyToOne
-    @JsonIgnore
     private Buyer buyer;
 
 }
