@@ -1,11 +1,9 @@
 package com.w4.projetoIntegrador.entities;
 
-import com.w4.projetoIntegrador.enums.ProductTypes;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -15,17 +13,19 @@ import javax.validation.constraints.NotNull;
 @AllArgsConstructor
 @Builder
 @Entity
-@Table(name = "products")
-public class Product {
+@Table(name = "scheduled_items_cart")
+public class ScheduledItemCart {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotNull
-    @NotEmpty
-    private String name;
+    @ManyToOne
+    private ProductAnnouncement productAnnouncement;
+
+    @ManyToOne
+    private ScheduledCart scheduledCart;
 
     @NotNull
-    private ProductTypes productType;
+    private Integer quantity;
 }
